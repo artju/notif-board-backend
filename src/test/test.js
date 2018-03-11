@@ -17,17 +17,17 @@ describe("test api", () => {
 
     it('should register', (done) => {
         request(server).post('/register').send( {user: "arto", password: "test", repeatPass: "test"})
-        .expect({message: "User created"}, done);
+        .expect("User created", done);
     }) 
     
     it('should not register with wrong repeated password', (done) => {
         request(server).post('/register').send( {user: "testeri", password: "test", repeatPass: "tes"})
-        .expect(403, {error: "Passwords didn't match"}, done);
+        .expect(403, "Passwords didn't match", done);
     }) 
 
     it('should not register when username is taken', (done) => {
         request(server).post('/register').send( {user: "arto", password: "test", repeatPass: "test"})
-        .expect(400, {error: "Username is taken"}, done);
+        .expect(400, "Username is taken", done);
     }) 
  
     it('should login', (done) => {
@@ -37,7 +37,7 @@ describe("test api", () => {
 
     it('should not login', (done) => {
         request(server).post('/login').send( {user: "arto", password: "asd"})
-        .expect({error:"Wrong username or password"}, done);
+        .expect("Wrong username or password", done);
     })
 
     it('should post', (done) => {

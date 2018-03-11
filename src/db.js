@@ -8,6 +8,7 @@ const sequelize = new Sequelize({
     password: info.password,
     dialect: 'mysql',
     operatorsAliases: false,
+    logging: false,
   }); 
 
   const Notification = sequelize.define('notification', {
